@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
+    <FrontendIPConfigurations />
+    <FrontendPorts>
+        <FrontendPort>
+            <Name>FrontendPort1</Name>
+            <Port>443</Port>
+        </FrontendPort>
+    </FrontendPorts>
+    <BackendAddressPools>
+        <BackendAddressPool>
+            <Name>BackendPool1</Name>
+            <IPAddresses>
+                <IPAddress>*** insert the IP address of the Linux VM here ***</IPAddress>
+            </IPAddresses>
+        </BackendAddressPool>
+    </BackendAddressPools>
+    <BackendHttpSettingsList>
+        <BackendHttpSettings>
+            <Name>BackendSetting1</Name>
+            <Port>80</Port>
+            <Protocol>Http</Protocol>
+            <CookieBasedAffinity>Enabled</CookieBasedAffinity>
+        </BackendHttpSettings>
+    </BackendHttpSettingsList>
+    <HttpListeners>
+        <HttpListener>
+            <Name>HTTPListener1</Name>
+            <FrontendPort>FrontendPort1</FrontendPort>
+            <Protocol>Https</Protocol>
+            <SslCert>GwCert</SslCert>
+        </HttpListener>
+    </HttpListeners>
+    <HttpLoadBalancingRules>
+        <HttpLoadBalancingRule>
+            <Name>HttpLBRule1</Name>
+            <Type>basic</Type>
+            <BackendHttpSettings>BackendSetting1</BackendHttpSettings>
+            <Listener>HTTPListener1</Listener>
+            <BackendAddressPool>BackendPool1</BackendAddressPool>
+        </HttpLoadBalancingRule>
+    </HttpLoadBalancingRules>
+</ApplicationGatewayConfiguration>
