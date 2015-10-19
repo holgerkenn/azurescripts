@@ -1,4 +1,4 @@
-from azure.storage import BlobService;
+from azure.storage.blob import BlobService;
 import sys,argparse
 
 storage_account_key = ''
